@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens copied from the live site's compiled CSS. */
+@layer base {
+  :root {
+    --background: 210 40% 98%; --foreground: 221 39% 11%;
+    --card: 0 0% 100%; --card-foreground: 221 39% 11%;
+    --popover: 0 0% 100%; --popover-foreground: 221 39% 11%;
+    --primary: 217 91% 60%; --primary-foreground: 0 0% 100%; --primary-hover: 224 76% 48%; --primary-light: 214 100% 97%;
+    --secondary: 220 14% 96%; --secondary-foreground: 221 39% 11%;
+    --muted: 220 14% 96%; --muted-foreground: 220 9% 36%;
+    --accent: 214 100% 97%; --accent-foreground: 217 91% 60%;
+    --destructive: 0 72% 51%; --destructive-foreground: 0 0% 100%; --destructive-light: 0 86% 97%;
+    --border: 220 13% 91%; --input: 220 13% 91%; --ring: 217 91% 60%;
+    --radius: .5rem; --radius-md: .75rem; --radius-lg: 1rem; --radius-xl: 1.25rem;
+    --success: 123 38% 33%; --success-hover: 123 43% 27%; --success-light: 122 39% 94%;
+    --warning: 38 92% 50%; --warning-light: 48 100% 96%;
+    --info: 217 91% 60%; --critical: 0 72% 51%; --critical-light: 0 86% 97%;
+    --locked: 220 9% 46%; --archived: 220 13% 69%;
+    --chart-blue: 217 91% 60%; --chart-green: 123 38% 33%; --chart-yellow: 38 92% 50%; --chart-red: 0 72% 51%;
+    --chart-purple: 265 60% 55%; --chart-teal: 180 60% 45%; --chart-orange: 25 95% 53%;
+    --shadow-card: 0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.06);
+    --shadow-button: 0 1px 2px rgba(0,0,0,.08);
+  }
+  .dark {
+    --background: 221 39% 11%; --foreground: 210 20% 98%;
+    --card: 220 20% 14%; --card-foreground: 210 20% 98%;
+    --popover: 220 20% 14%; --popover-foreground: 210 20% 98%;
+    --primary: 217 91% 60%; --primary-foreground: 0 0% 100%; --primary-hover: 217 91% 65%; --primary-light: 217 50% 20%;
+    --secondary: 220 20% 18%; --secondary-foreground: 210 20% 98%;
+    --muted: 220 20% 20%; --muted-foreground: 220 13% 55%;
+    --accent: 217 50% 20%; --accent-foreground: 217 91% 70%;
+    --destructive: 0 62% 55%; --destructive-foreground: 0 0% 100%; --destructive-light: 0 40% 20%;
+    --border: 220 20% 22%; --input: 220 20% 22%; --ring: 217 91% 60%;
+    --success: 123 38% 40%; --success-light: 123 30% 18%;
+    --warning: 38 80% 55%; --warning-light: 38 40% 18%;
+    --critical: 0 62% 55%; --critical-light: 0 40% 18%;
+    --locked: 220 13% 55%; --archived: 220 13% 50%;
+  }
+  * { border-color: hsl(var(--border)); }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+  }
+  /* Global heading defaults from the live site. Utility classes override them. */
+  h1 { font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; letter-spacing: -.025em; }
+  h3 { font-size: .8125rem; line-height: 1.25rem; font-weight: 500; }
+}
+
+@layer components {
+  .module-btn {
+    height: 2.5rem; border-radius: var(--radius-xl); background-color: hsl(var(--primary));
+    padding: .5rem 1rem; font-size: .8125rem; line-height: 1.25rem; font-weight: 600;
+    color: hsl(var(--primary-foreground)); box-shadow: 0 6px 14px #2563eb38;
+  }
+  .module-btn:hover { background: hsl(var(--primary-hover)); box-shadow: 0 8px 16px #2563eb42; transform: translateY(-1px); }
+  .module-btn-secondary {
+    height: 2.5rem; border-radius: var(--radius-xl); border-width: 1px; border-color: hsl(var(--primary) / .35);
+    background-color: hsl(var(--background)); padding: .5rem 1rem; font-size: .8125rem; line-height: 1.25rem;
+    font-weight: 600; color: hsl(var(--primary)); box-shadow: 0 1px 2px 0 rgb(0 0 0 / .05);
+  }
+  .module-btn-secondary:hover { background: hsl(var(--accent)); box-shadow: 0 6px 12px #0f172a14; transform: translateY(-1px); }
+  .dashboard-card {
+    border-radius: var(--radius-xl); border-width: 1px; border-color: hsl(var(--border) / .9);
+    background-color: hsl(var(--card)); box-shadow: var(--shadow-card);
+    transition: all .2s cubic-bezier(.4,0,.2,1);
+    background-image: linear-gradient(180deg, hsl(var(--card)), hsl(var(--card) / .96));
+  }
+  .dashboard-surface-link {
+    border-radius: var(--radius-xl); border-width: 1px; border-color: hsl(var(--border));
+    background-color: hsl(var(--background)); padding: .75rem;
+    transition: all .2s cubic-bezier(.4,0,.2,1);
+    background-image: linear-gradient(180deg, hsl(var(--background)), hsl(var(--background) / .97));
+  }
+  .dashboard-hero { box-shadow: 0 12px 26px #0f172a1a; border-color: hsl(var(--primary) / .18); }
+  .dashboard-hero h1 { letter-spacing: -.02em; }
+}
